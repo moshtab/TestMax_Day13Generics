@@ -1,15 +1,16 @@
 package day13;
 
-public class TestMax {
-	public static void main(String[] args) {
-		Integer xInt = 5, yInt = 3, zInt = 2;
-		Float xFlt = 3.4f, yFlt = 2.5f, zFlt = 8.3f;
-		String xSt = "Apple", ySt = "Banana", zSt = "Peach";
+public class TestMax<T extends Comparable<T>> {
+	T x, y, z;
 
-		// calling methods for finding Maximum
-		testMaximum(xSt, ySt, zSt);
-		testMaximum(xInt, yInt, zInt);
-		testMaximum(xFlt, yFlt, zFlt);
+	public TestMax(T x, T y, T z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+
+	public T maximum() {
+		return testMaximum(x, y, z);
 	}
 
 	// Generic method of Type Integer,Float,String for finding maximum of 3
@@ -26,9 +27,26 @@ public class TestMax {
 
 		return max;
 	}
-
+    //print method 
 	public static <T> void printMax(T x, T y, T z, T max) {
 		System.out.printf("max of %s,%s and %s is :- %s\n", x, y, z, max);
+	}
+
+	public static void main(String[] args) {
+		Integer xInt = 5, yInt = 3, zInt = 2;
+		Float xFlt = 3.4f, yFlt = 2.5f, zFlt = 8.3f;
+		String xSt = "Apple", ySt = "Banana", zSt = "Peach";
+        
+		//creating the objects of generic
+		TestMax<Integer> integer = new TestMax<>(xInt, yInt, zInt);
+		TestMax<Float> flt = new TestMax<>(xFlt, yFlt, zFlt);
+		TestMax<String> string = new TestMax<>(xSt, ySt, zSt);
+
+		// calling methods for finding Maximum
+		integer.maximum();
+		flt.maximum();
+		string.maximum();
+
 	}
 
 }
