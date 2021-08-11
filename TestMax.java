@@ -1,5 +1,7 @@
 package day13;
 
+import java.util.Arrays;
+
 public class TestMax {
 	public static void main(String[] args) {
 		Integer xInt = 5, yInt = 3, zInt = 2;
@@ -9,20 +11,30 @@ public class TestMax {
 		Integer[] arrI = { xInt, yInt, zInt };
 		Float[] arrF = { xFlt, yFlt, zFlt };
 		String[] arrS = { xSt, ySt, zSt };
-		
-        System.out.println("Before sorting Elements");
+
+		System.out.println("Before sorting Elements");
 		printArray(arrI);
 		printArray(arrF);
 		printArray(arrS);
 
-		bubbleSort(arrI);
-		bubbleSort(arrF);
-		bubbleSort(arrS);
+		// sorting array
+		Arrays.sort(arrI);
+		Arrays.sort(arrF);
+		Arrays.sort(arrS);
+
+		printArraySort(arrI);
+		printArraySort(arrF);
+		printArraySort(arrS);
 
 		System.out.println();
 		testMaximum(xSt, ySt, zSt);
 		testMaximum(xInt, yInt, zInt);
 		testMaximum(xFlt, yFlt, zFlt);
+
+	}
+
+	private static <T> void printArraySort(T[] arr) {
+		System.out.println("Sorted array[] is : " + Arrays.toString(arr));
 
 	}
 
@@ -33,26 +45,6 @@ public class TestMax {
 			System.out.print(arr[i] + " ");
 		}
 		System.out.println();
-	}
-
-	// After sorting
-	public static <T extends Comparable<T>> void bubbleSort(T[] arr) {
-		Integer i, j;
-		T temp;
-		for (i = 0; i < arr.length; i++) {
-			for (j = i + 1; j < arr.length; j++) {
-				if (arr[i].compareTo(arr[j]) > 0) {
-					temp = arr[i];
-					arr[i] = arr[j];
-					arr[j] = temp;
-				}
-			}
-		}
-		System.out.println();
-		System.out.println("The sorted order is");
-		for (i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
-		}
 	}
 
 	// Testing the maximum value
